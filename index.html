@@ -52,7 +52,7 @@
       <section class="main-section">
         <div class="container">
           <h1 class="main-text">Effective Solutions for Your Business</h1>
-          <button class="main-section-button" type="button">
+          <button class="main-section-button" type="button" data-modal-open>
             Order Service
           </button>
         </div>
@@ -559,16 +559,96 @@
           autocomplete="off"
           novalidate
         >
-          <p class="subscribe-title">Subscribe</p>
-          <input
-            class="form-input"
-            type="email"
-            name="useremail"
-            id="useremail"
-          />
-          <button class="form-btn" type="submit">Subscribe</button>
+          <label class="form-label"
+            >Subscribe
+            <input
+              class="form-input"
+              type="email"
+              name="useremail"
+              id="useremail"
+              placeholder="E-mail"
+            />
+          </label>
+          <button class="form-btn" type="submit">
+            Subscribe
+            <svg class="form-btn-svg" width="24" height="20">
+              <use href="./images/icons.svg#icon-icon-send"></use>
+            </svg>
+          </button>
         </form>
       </div>
     </footer>
+    <!-- Modal Backdrop and Window -->
+    <div class="backdrop is-hidden" id="modal-backdrop">
+      <div class="modal-window">
+        <button
+          type="button"
+          class="modal-close-btn"
+          data-modal-close
+          aria-label="Close modal"
+        >
+          <svg class="btn-svg" width="8" height="8">
+            <use href="./images/icons.svg#icon-vector_x"></use>
+          </svg>
+        </button>
+        <form class="modal-form">
+          <p class="modal-title">
+            Leave your contacts and we will call you back
+          </p>
+          <label class="modal-label">
+            Name
+            <div class="input-wrapper">
+              <input type="text" name="username" class="modal-input" required />
+              <svg class="input-icon" width="18" height="18">
+                <use href="./images/icons.svg#icon-name"></use>
+              </svg>
+            </div>
+          </label>
+          <label class="modal-label">
+            Phone
+            <div class="input-wrapper">
+              <input type="tel" name="userphone" class="modal-input" required />
+              <svg class="input-icon" width="18" height="18">
+                <use href="./images/icons.svg#icon-phone"></use>
+              </svg>
+            </div>
+          </label>
+          <label class="modal-label">
+            Email
+            <div class="input-wrapper">
+              <input
+                type="email"
+                name="useremail"
+                class="modal-input"
+                required
+              />
+              <svg class="input-icon" width="18" height="18">
+                <use href="./images/icons.svg#icon-email"></use>
+              </svg>
+            </div>
+          </label>
+          <label class="modal-label">
+            Comment
+            <textarea
+              name="usercomment"
+              class="modal-textarea"
+              placeholder="Text input"
+            ></textarea>
+          </label>
+          <label class="modal-checkbox-label">
+            <input
+              type="checkbox"
+              name="terms"
+              class="modal-checkbox"
+              required
+            />
+            I accept the terms and conditions of the
+            <a href="#" class="modal-policy-link">Privacy Policy</a>
+          </label>
+          <button type="submit" class="modal-send-btn">Send</button>
+        </form>
+      </div>
+    </div>
+    <script src="js/modal.js"></script>
   </body>
 </html>

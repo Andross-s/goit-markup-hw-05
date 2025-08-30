@@ -111,7 +111,6 @@ img {
 }
 
 .links-active::after {
-  content: "";
   border-radius: 2px;
   width: 100%;
   position: absolute;
@@ -554,51 +553,391 @@ img {
   fill: #f4f4fd;
 }
 
-/* Subscribe Form */
+/* Subscribe Form - форма підписки в footer */
 
+/* Контейнер форми підписки - використовуємо flexbox для горизонтального розташування */
 .subscribe-form {
-}
-.subscribe-title {
-  font-weight: 500;
-  font-size: 16px;
-
-  /* line-height: 24px; */
-  line-height: 150%;
-  letter-spacing: 0.02em;
-  color: #fff;
-  margin-bottom: 16px;
+  display: flex; /* Flexbox для горизонтального розташування елементів */
+  align-items: flex-end; /* Вирівнюємо елементи по нижньому краю */
+  gap: 24px; /* Відступ між елементами форми */
 }
 
+/* Лейбл для поля вводу email */
+.form-label {
+  display: flex; /* Flexbox для вертикального розташування */
+  flex-direction: column; /* Вертикальне розташування лейбла та поля */
+  gap: 16px; /* Відступ між лейблом та полем вводу */
+  font-weight: 500; /* Напівжирний шрифт для лейбла */
+  font-size: 16px; /* Розмір шрифту лейбла */
+  line-height: 150%; /* Висота рядка для кращої читабельності */
+  letter-spacing: 0.02em; /* Міжлітерний інтервал */
+  color: #fff; /* Білий колір тексту на темному фоні footer */
+}
+
+/* Поле вводу email в формі підписки */
 .form-input {
-  font-family: inherit;
-  font-weight: 400;
-  font-size: 12px;
-  /* line-height: 24px; */
-  line-height: 200%;
-  letter-spacing: 0.04em;
-  color: #fff;
-  border: 1px solid #fff;
-  border-radius: 4px;
-  width: 264px;
-  height: 40px;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
-  background-color: transparent;
-  padding: 8px 16px;
+  font-family: inherit; /* Наслідуємо шрифт від батьківського елемента */
+  font-weight: 400; /* Звичайна товщина шрифту для тексту в полі */
+  font-size: 12px; /* Розмір шрифту тексту в полі */
+  line-height: 200%; /* Висота рядка для кращої читабельності */
+  letter-spacing: 0.04em; /* Міжлітерний інтервал */
+  color: #fff; /* Білий колір тексту */
+  border: 1px solid #fff; /* Біла рамка для контрасту на темному фоні */
+  border-radius: 4px; /* Заокруглені кути для сучасного вигляду */
+  width: 264px; /* Фіксована ширина поля вводу */
+  height: 40px; /* Висота поля вводу */
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15); /* Тінь для об'ємності */
+  background-color: transparent; /* Прозорий фон як у макеті */
+  padding: 8px 16px; /* Внутрішні відступи: верх/низ 8px, ліво/право 16px */
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна зміна кольору рамки */
 }
 
+/* Ефекти при фокусі на полі вводу */
+.form-input:focus {
+  outline: none; /* Убираємо стандартну обводку браузера */
+  border-color: #4d5ae5; /* Фіолетова рамка при фокусі */
+}
+
+/* Стилі для placeholder тексту */
+.form-input::placeholder {
+  font-family: inherit; /* Наслідуємо шрифт */
+  font-weight: 400; /* Звичайна товщина шрифту */
+  color: #fff; /* Білий колір placeholder */
+  opacity: 0.6; /* Прозорість для відрізнення від введеного тексту */
+}
+
+/* Кнопка підписки */
 .form-btn {
+  font-family: inherit; /* Наслідуємо шрифт від батьківського елемента */
+  font-weight: 500; /* Напівжирний шрифт для тексту кнопки */
+  font-size: 16px; /* Розмір шрифту тексту кнопки */
+  line-height: 150%; /* Висота рядка */
+  letter-spacing: 0.04em; /* Міжлітерний інтервал */
+  text-align: center; /* Центрування тексту в кнопці */
+  color: #fff; /* Білий колір тексту */
+  background: #4d5ae5; /* Фіолетовий фон кнопки */
+  border-radius: 4px; /* Заокруглені кути */
+  padding: 8px 24px; /* Внутрішні відступи: верх/низ 8px, ліво/право 24px */
+  width: 165px; /* Фіксована ширина кнопки */
+  height: 40px; /* Висота кнопки */
+  cursor: pointer; /* Курсор-рука при наведенні */
+  border: none; /* Без рамки */
+  display: flex; /* Flexbox для розташування тексту та іконки */
+  align-items: center; /* Центрування по вертикалі */
+  justify-content: center; /* Центрування по горизонталі */
+  gap: 16px; /* Відступ між текстом та іконкою */
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна анімація */
+}
+
+/* Ефекти при наведенні та фокусі на кнопці */
+.form-btn:hover,
+.form-btn:focus {
+  background: #404bbf; /* Темніший фіолетовий при наведенні */
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15); /* Тінь при наведенні */
+}
+
+/* Іконка відправки в кнопці */
+.form-btn-svg {
+  fill: #fff; /* Білий колір іконки */
+  width: 24px; /* Ширина іконки */
+  height: 20px; /* Висота іконки */
+  flex-shrink: 0; /* Запобігає стисненню іконки */
+}
+
+/* <!-- Modal Backdrop and Window --> */
+
+input {
   font-family: inherit;
-  font-weight: 500;
-  font-size: 16px;
-  /* line-height: 24px; */
-  line-height: 150%;
-  letter-spacing: 0.04em;
-  text-align: center;
-  color: #fff;
-  background: #4d5ae5;
-  border-radius: 4px;
-  padding: 8px 24px;
-  width: 165px;
-  height: 40px;
-  cursor: pointer;
+}
+
+/* Backdrop - фоновий шар модального вікна */
+.backdrop {
+  position: fixed; /* Фіксована позиція відносно viewport */
+  top: 0; /* Прикріплюємо до верху екрану */
+  left: 0; /* Прикріплюємо до лівого краю екрану */
+  width: 100%; /* Займає всю ширину екрану */
+  height: 100%; /* Займає всю висоту екрану */
+  background-color: rgba(46, 47, 66, 0.4); /* Напівпрозорий темний фон */
+  display: flex; /* Використовуємо flexbox для центрування */
+  align-items: center; /* Центруємо по вертикалі */
+  justify-content: center; /* Центруємо по горизонталі */
+  z-index: 1000; /* Високий z-index щоб модаль була поверх інших елементів */
+  opacity: 1; /* Повна видимість */
+  visibility: visible; /* Видимий елемент */
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна анімація появи/зникнення */
+}
+
+/* Клас для приховування модального вікна */
+.backdrop.is-hidden {
+  opacity: 0; /* Повна прозорість */
+  visibility: hidden; /* Приховуємо елемент */
+  pointer-events: none; /* Вимікаємо взаємодію з елементом */
+}
+
+/* Модальне вікно - основний контейнер форми */
+.modal-window {
+  position: relative; /* Відносна позиція для правильного розміщення кнопки закриття */
+  width: 408px; /* Фіксована ширина модального вікна */
+  min-height: 584px; /* Мінімальна висота */
+  background-color: #fcfcfc; /* Світлий фон */
+  border-radius: 4px; /* Заокруглені кути */
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12),
+    0 2px 1px 0 rgba(0, 0, 0, 0.2); /* Тінь для об'ємності */
+  padding: 72px 24px 24px 24px; /* Внутрішні відступи: верх, право, низ, ліво */
+  transform: scale(1); /* Нормальний розмір */
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна анімація масштабування */
+}
+
+/* Анімація появи модального вікна */
+.backdrop.is-hidden .modal-window {
+  transform: scale(0.5); /* Зменшуємо розмір при приховуванні */
+}
+
+/* Кнопка закриття модального вікна */
+.modal-close-btn {
+  position: absolute; /* Абсолютна позиція відносно модального вікна */
+  top: 24px; /* Відступ зверху */
+  right: 24px; /* Відступ справа */
+  width: 24px; /* Ширина кнопки */
+  height: 24px; /* Висота кнопки */
+  border-radius: 50%; /* Кругла форма */
+  background-color: #e7e9fc; /* Світло-синій фон */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Тонка рамка */
+  cursor: pointer; /* Курсор-рука при наведенні */
+  display: flex; /* Flexbox для центрування іконки */
+  align-items: center; /* Центрування по вертикалі */
+  justify-content: center; /* Центрування по горизонталі */
+  padding: 0; /* Убираємо внутрішні відступи */
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна анімація */
+}
+
+/* Ефекти при наведенні на кнопку закриття */
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+  background-color: #404bbf; /* Темніший синій при наведенні */
+  border: 1px solid #404bbf; /* Темніша рамка */
+}
+
+/* Іконка закриття (хрестик) */
+.btn-svg {
+  fill: #2e2f42; /* Колір іконки */
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна зміна кольору */
+}
+
+/* Зміна кольору іконки при наведенні */
+.modal-close-btn:hover .btn-svg,
+.modal-close-btn:focus .btn-svg {
+  fill: #ffffff; /* Білий колір при наведенні */
+}
+
+/* Форма модального вікна */
+.modal-form {
+  display: flex; /* Flexbox для вертикального розташування */
+  flex-direction: column; /* Вертикальне розташування елементів */
+  gap: 8px; /* Відступи між елементами форми */
+}
+
+/* Заголовок модального вікна */
+.modal-title {
+  font-weight: 500; /* Напівжирний шрифт */
+  font-size: 16px; /* Розмір шрифту */
+  line-height: 1.5; /* Висота рядка */
+  letter-spacing: 0.02em; /* Міжлітерний інтервал */
+  text-align: center; /* Вирівнювання по центру */
+  color: #2e2f42; /* Темно-синій колір тексту */
+  margin-bottom: 16px; /* Відступ знизу */
+}
+
+/* Контейнер для полів вводу з іконками */
+.input-wrapper {
+  position: relative; /* Відносна позиція для розміщення іконок */
+  width: 100%; /* Повна ширина */
+}
+
+/* Поля вводу в модальному вікні */
+.modal-input {
+  width: 100%; /* Повна ширина контейнера */
+  height: 40px; /* Висота поля */
+  border: 1px solid rgba(46, 47, 66, 0.4); /* Рамка з прозорістю */
+  border-radius: 4px; /* Заокруглені кути */
+  background-color: transparent; /* Прозорий фон */
+  padding: 8px 16px 8px 40px; /* Внутрішні відступи: верх, право, низ, ліво (більше зліва для іконки) */
+  font-family: inherit; /* Наслідуємо шрифт */
+  font-size: 12px; /* Розмір шрифту */
+  line-height: 1.17; /* Висота рядка */
+  letter-spacing: 0.04em; /* Міжлітерний інтервал */
+  color: #2e2f42; /* Колір тексту */
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна зміна кольору рамки */
+}
+
+/* Ефекти при фокусі на полі вводу */
+.modal-input:focus {
+  outline: none; /* Убираємо стандартну обводку */
+  border-color: #4d5ae5; /* Фіолетова рамка при фокусі */
+}
+
+/* Іконки в полях вводу - використовують SVG з файлу icons.svg */
+.input-icon {
+  position: absolute; /* Абсолютна позиція відносно контейнера */
+  left: 16px; /* Відступ зліва */
+  top: 50%; /* Позиціонуємо по центру */
+  transform: translateY(-50%); /* Точне центрування по вертикалі */
+  pointer-events: none; /* Вимікаємо взаємодію з іконкою */
+  fill: #2e2f42; /* Колір іконки */
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна зміна кольору */
+  width: 18px; /* Ширина іконки */
+  height: 18px; /* Висота іконки */
+  display: block; /* Блоковий елемент для кращої видимості */
+}
+
+/* Зміна кольору іконки при фокусі на полі - використовуємо селектор + для сусіднього елемента */
+.modal-input:focus + .input-icon {
+  fill: #4d5ae5; /* Фіолетовий колір при фокусі */
+}
+
+/* Додаткові стилі для кращої видимості іконок */
+.input-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Додаткові стилі для іконок в модальному вікні */
+.input-icon {
+  z-index: 1; /* Піднімаємо іконку над полем вводу */
+}
+
+/* Лейбли для полів вводу */
+.modal-label {
+  display: flex; /* Flexbox для вертикального розташування */
+  flex-direction: column; /* Вертикальне розташування */
+  gap: 4px; /* Відступ між лейблом і полем */
+  font-weight: 400; /* Звичайна товщина шрифту */
+  font-size: 12px; /* Розмір шрифту */
+  line-height: 1.17; /* Висота рядка */
+  letter-spacing: 0.04em; /* Міжлітерний інтервал */
+  color: #8e8f99; /* Сірий колір тексту */
+}
+
+/* Текстове поле для коментаря */
+.modal-textarea {
+  width: 100%; /* Повна ширина */
+  height: 120px; /* Висота текстового поля */
+  border: 1px solid rgba(46, 47, 66, 0.4); /* Рамка з прозорістю */
+  border-radius: 4px; /* Заокруглені кути */
+  background-color: transparent; /* Прозорий фон */
+  padding: 8px 16px; /* Внутрішні відступи */
+  font-family: inherit; /* Наслідуємо шрифт */
+  font-size: 12px; /* Розмір шрифту */
+  line-height: 1.17; /* Висота рядка */
+  letter-spacing: 0.04em; /* Міжлітерний інтервал */
+  color: #2e2f42; /* Колір тексту */
+  resize: none; /* Заборона зміни розміру */
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна зміна кольору рамки */
+}
+
+/* Ефекти при фокусі на текстовому полі */
+.modal-textarea:focus {
+  outline: none; /* Убираємо стандартну обводку */
+  border-color: #4d5ae5; /* Фіолетова рамка при фокусі */
+}
+
+/* Placeholder для текстового поля */
+.modal-textarea::placeholder {
+  color: rgba(46, 47, 66, 0.4); /* Колір placeholder з прозорістю */
+}
+
+/* Контейнер для чекбокса та тексту */
+.modal-checkbox-label {
+  display: flex; /* Flexbox для горизонтального розташування */
+  align-items: center; /* Вирівнювання по центру */
+  gap: 8px; /* Відступ між чекбоксом і текстом */
+  margin-top: 16px; /* Відступ зверху */
+  margin-bottom: 24px; /* Відступ знизу */
+  font-weight: 400; /* Звичайна товщина шрифту */
+  font-size: 12px; /* Розмір шрифту */
+  line-height: 1.17; /* Висота рядка */
+  letter-spacing: 0.04em; /* Міжлітерний інтервал */
+  color: #8e8f99; /* Сірий колір тексту */
+}
+
+/* Приховуємо стандартний чекбокс */
+.modal-checkbox {
+  position: absolute; /* Абсолютна позиція */
+  width: 1px; /* Мінімальна ширина */
+  height: 1px; /* Мінімальна висота */
+  margin: -1px; /* Негативні відступи */
+  border: 0; /* Без рамки */
+  padding: 0; /* Без відступів */
+  white-space: nowrap; /* Без переносу рядків */
+  clip-path: inset(100%); /* Приховуємо елемент */
+  clip: rect(0 0 0 0); /* Додаткове приховування */
+  overflow: hidden; /* Приховуємо переповнення */
+}
+
+/* Кастомний чекбокс */
+.modal-checkbox-label::before {
+  content: ""; /* Порожній контент */
+  display: inline-block; /* Інлайн-блок */
+  width: 16px; /* Ширина чекбокса */
+  height: 16px; /* Висота чекбокса */
+  border: 1.25px solid rgba(46, 47, 66, 0.4); /* Рамка з прозорістю */
+  border-radius: 2px; /* Заокруглені кути */
+  background-color: transparent; /* Прозорий фон */
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна анімація */
+}
+
+/* Стан чекбокса при відмітці */
+.modal-checkbox:checked + .modal-checkbox-label::before {
+  background-color: #404bbf; /* Фіолетовий фон при відмітці */
+  border-color: #404bbf; /* Фіолетова рамка при відмітці */
+  background-image: url("data:images/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 32'%3e%3cpath fill='%23ffffff' d='M40 0L16 24L0 8L4 4L16 16L36 4L40 0Z'/%3e%3c/svg%3e"); /* Галочка з icon-vector_v */
+  background-size: 10px 10px; /* Розмір галочки */
+  background-position: center; /* Позиція галочки по центру */
+  background-repeat: no-repeat; /* Без повторення */
+}
+
+/* Посилання на політику конфіденційності */
+.modal-policy-link {
+  color: #4d5ae5; /* Фіолетовий колір посилання */
+  text-decoration: underline; /* Підкреслення */
+  text-decoration-skip-ink: none; /* Не пропускаємо підкреслення */
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна зміна кольору */
+}
+
+/* Ефекти при наведенні на посилання */
+.modal-policy-link:hover,
+.modal-policy-link:focus {
+  color: #404bbf; /* Темніший фіолетовий при наведенні */
+}
+
+/* Кнопка відправки форми */
+.modal-send-btn {
+  align-self: center; /* Центруємо кнопку */
+  min-width: 169px; /* Мінімальна ширина */
+  height: 56px; /* Висота кнопки */
+  background-color: #4d5ae5; /* Фіолетовий фон */
+  color: #ffffff; /* Білий текст */
+  font-family: inherit; /* Наслідуємо шрифт */
+  font-weight: 500; /* Напівжирний шрифт */
+  font-size: 16px; /* Розмір шрифту */
+  line-height: 1.5; /* Висота рядка */
+  letter-spacing: 0.04em; /* Міжлітерний інтервал */
+  border: none; /* Без рамки */
+  border-radius: 4px; /* Заокруглені кути */
+  cursor: pointer; /* Курсор-рука при наведенні */
+  padding: 16px 32px; /* Внутрішні відступи */
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15); /* Тінь */
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна анімація */
+}
+
+/* Ефекти при наведенні на кнопку */
+.modal-send-btn:hover,
+.modal-send-btn:focus {
+  background-color: #404bbf; /* Темніший фіолетовий при наведенні */
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15); /* Тінь при наведенні */
 }
