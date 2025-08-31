@@ -670,9 +670,9 @@ input {
 }
 
 /* Клас для приховування модального вікна */
-.backdrop.is-hidden {
+.backdrop .is-open {
   opacity: 0; /* Повна прозорість */
-  visibility: hidden; /* Приховуємо елемент */
+  visibility: open; /* Приховуємо(hidden) елемент */
   pointer-events: none; /* Вимікаємо взаємодію з елементом */
 }
 
