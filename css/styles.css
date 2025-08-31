@@ -861,9 +861,10 @@ input {
   line-height: 1.17; /* Висота рядка */
   letter-spacing: 0.04em; /* Міжлітерний інтервал */
   color: #8e8f99; /* Сірий колір тексту */
+  cursor: pointer; /* Курсор-рука при наведенні */
 }
 
-/* Приховуємо стандартний чекбокс */
+/* Приховуємо оригінальний чекбокс */
 .modal-checkbox {
   position: absolute; /* Абсолютна позиція */
   width: 1px; /* Мінімальна ширина */
@@ -878,9 +879,10 @@ input {
 }
 
 /* Кастомний чекбокс */
-.modal-checkbox-label::before {
-  content: ""; /* Порожній контент */
-  display: inline-block; /* Інлайн-блок */
+.custom-checkbox {
+  display: inline-flex; /* Flexbox для центрування іконки */
+  align-items: center; /* Вирівнювання по центру */
+  justify-content: center; /* Центрування по горизонталі */
   width: 16px; /* Ширина чекбокса */
   height: 16px; /* Висота чекбокса */
   border: 1.25px solid rgba(46, 47, 66, 0.4); /* Рамка з прозорістю */
@@ -888,16 +890,25 @@ input {
   background-color: transparent; /* Прозорий фон */
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     border-color 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна анімація */
+  flex-shrink: 0; /* Запобігає стисненню */
+}
+
+/* Іконка галочки */
+.checkbox-icon {
+  width: 10px; /* Розмір іконки */
+  height: 10px; /* Розмір іконки */
+  fill: transparent; /* Прозорий колір за замовчуванням */
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна анімація */
 }
 
 /* Стан чекбокса при відмітці */
-.modal-checkbox:checked + .modal-checkbox-label::before {
+.modal-checkbox:checked + .custom-checkbox {
   background-color: #404bbf; /* Фіолетовий фон при відмітці */
   border-color: #404bbf; /* Фіолетова рамка при відмітці */
-  background-image: url("data:images/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 32'%3e%3cpath fill='%23ffffff' d='M40 0L16 24L0 8L4 4L16 16L36 4L40 0Z'/%3e%3c/svg%3e"); /* Галочка з icon-vector_v */
-  background-size: 10px 10px; /* Розмір галочки */
-  background-position: center; /* Позиція галочки по центру */
-  background-repeat: no-repeat; /* Без повторення */
+}
+
+.modal-checkbox:checked + .custom-checkbox .checkbox-icon {
+  fill: #ffffff; /* Білий колір галочки при відмітці */
 }
 
 /* Посилання на політику конфіденційності */
