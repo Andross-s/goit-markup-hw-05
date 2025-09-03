@@ -666,8 +666,8 @@ input {
   align-items: center; /* Центруємо по вертикалі */
   justify-content: center; /* Центруємо по горизонталі */
   z-index: 1000; /* Високий z-index щоб модаль була поверх інших елементів */
-  opacity: 0; /* Повна видимість */
-  pointer-events: none; /* Вимікаємо взаємодію з елементом */
+  opacity: 1; /* Повна видимість */
+  pointer-events: auto; /* Вимікаємо взаємодію з елементом */
 
   visibility: visible; /* Видимий елемент */
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -742,7 +742,6 @@ input {
 .modal-form {
   display: flex; /* Flexbox для вертикального розташування */
   flex-direction: column; /* Вертикальне розташування елементів */
-  gap: 8px; /* Відступи між елементами форми */
 }
 
 /* Заголовок модального вікна */
@@ -756,12 +755,6 @@ input {
   margin-bottom: 16px; /* Відступ знизу */
 }
 
-/* Контейнер для полів вводу з іконками */
-.input-wrapper {
-  position: relative; /* Відносна позиція для розміщення іконок */
-  width: 100%; /* Повна ширина */
-}
-
 /* Поля вводу в модальному вікні */
 .modal-input {
   width: 100%; /* Повна ширина контейнера */
@@ -769,7 +762,7 @@ input {
   border: 1px solid rgba(46, 47, 66, 0.4); /* Рамка з прозорістю */
   border-radius: 4px; /* Заокруглені кути */
   background-color: transparent; /* Прозорий фон */
-  padding: 8px 16px 8px 40px; /* Внутрішні відступи: верх, право, низ, ліво (більше зліва для іконки) */
+  padding: 11px 16px 11px 40px; /* Внутрішні відступи: верх, право, низ, ліво (більше зліва для іконки) */
   font-family: inherit; /* Наслідуємо шрифт */
   font-size: 12px; /* Розмір шрифту */
   line-height: 1.17; /* Висота рядка */
@@ -789,7 +782,6 @@ input {
   position: absolute; /* Абсолютна позиція відносно контейнера */
   left: 16px; /* Відступ зліва */
   top: 50%; /* Позиціонуємо по центру */
-  transform: translateY(-50%); /* Точне центрування по вертикалі */
   pointer-events: none; /* Вимікаємо взаємодію з іконкою */
   fill: #2e2f42; /* Колір іконки */
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна зміна кольору */
@@ -814,8 +806,12 @@ input {
   z-index: 1; /* Піднімаємо іконку над полем вводу */
 }
 
+/* Контейнер для полів вводу з іконками */
 /* Лейбли для полів вводу */
 .modal-label {
+  padding-bottom: 8px; /* Відступ знизу між лейблом і полем */
+  position: relative; /* Відносна позиція для розміщення іконок */
+
   display: flex; /* Flexbox для вертикального розташування */
   flex-direction: column; /* Вертикальне розташування */
   gap: 4px; /* Відступ між лейблом і полем */
@@ -824,6 +820,11 @@ input {
   line-height: 1.17; /* Висота рядка */
   letter-spacing: 0.04em; /* Міжлітерний інтервал */
   color: #8e8f99; /* Сірий колір тексту */
+}
+
+.modal-label,
+.modal-label-textarea {
+  padding-bottom: 0;
 }
 
 /* Текстове поле для коментаря */
@@ -855,65 +856,52 @@ input {
 }
 
 /* Контейнер для чекбокса та тексту */
-.modal-checkbox-label {
-  display: flex; /* Flexbox для горизонтального розташування */
+.checkbox {
   align-items: center; /* Вирівнювання по центру */
-  gap: 8px; /* Відступ між чекбоксом і текстом */
-  margin-top: 16px; /* Відступ зверху */
-  margin-bottom: 24px; /* Відступ знизу */
   font-weight: 400; /* Звичайна товщина шрифту */
   font-size: 12px; /* Розмір шрифту */
   line-height: 1.17; /* Висота рядка */
   letter-spacing: 0.04em; /* Міжлітерний інтервал */
   color: #8e8f99; /* Сірий колір тексту */
   cursor: pointer; /* Курсор-рука при наведенні */
+  margin-top: 16px; /* Відступ зверху */
+  margin-bottom: 24px; /* Відступ знизу */
 }
 
-/* Приховуємо оригінальний чекбокс */
-.modal-checkbox {
-  position: absolute; /* Абсолютна позиція */
-  width: 1px; /* Мінімальна ширина */
-  height: 1px; /* Мінімальна висота */
-  margin: -1px; /* Негативні відступи */
-  border: 0; /* Без рамки */
-  padding: 0; /* Без відступів */
-  white-space: nowrap; /* Без переносу рядків */
-  clip-path: inset(100%); /* Приховуємо елемент */
-  clip: rect(0 0 0 0); /* Додаткове приховування */
-  overflow: hidden; /* Приховуємо переповнення */
+/* Ховаємо стандартний чекбокс */
+.checkbox-input {
+  appearance: none; /* прибирає системний вигляд */
+  position: absolute;
+  opacity: 0; /* робимо невидимим */
 }
 
-/* Кастомний чекбокс */
-.custom-checkbox {
-  display: inline-flex; /* Flexbox для центрування іконки */
-  align-items: center; /* Вирівнювання по центру */
-  justify-content: center; /* Центрування по горизонталі */
-  width: 16px; /* Ширина чекбокса */
-  height: 16px; /* Висота чекбокса */
-  border: 1.25px solid rgba(46, 47, 66, 0.4); /* Рамка з прозорістю */
-  border-radius: 2px; /* Заокруглені кути */
-  background-color: transparent; /* Прозорий фон */
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна анімація */
-  flex-shrink: 0; /* Запобігає стисненню */
+/* Створюємо власний квадрат */
+.checkbox-custom {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  border: 1px solid rgba(46, 47, 66, 0.4);
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
-/* Іконка галочки */
-.checkbox-icon {
-  width: 10px; /* Розмір іконки */
-  height: 10px; /* Розмір іконки */
-  fill: transparent; /* Прозорий колір за замовчуванням */
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна анімація */
+/* Коли чекбокс відмічений */
+.checkbox-input:checked + .checkbox-custom {
+  background-color: #4d5ae5; /* колір заливки */
+  border-color: #4d5ae5;
+  position: relative;
 }
 
-/* Стан чекбокса при відмітці */
-.modal-checkbox:checked + .custom-checkbox {
-  background-color: #404bbf; /* Фіолетовий фон при відмітці */
-  border-color: #404bbf; /* Фіолетова рамка при відмітці */
-}
-
-.modal-checkbox:checked + .custom-checkbox .checkbox-icon {
-  fill: #ffffff; /* Білий колір галочки при відмітці */
+/* Додаємо галочку */
+.checkbox-input:checked + .checkbox-custom::after {
+  content: "✔";
+  color: #fff;
+  font-size: 14px;
+  position: absolute;
+  top: 0;
+  left: 3px;
 }
 
 /* Посилання на політику конфіденційності */
