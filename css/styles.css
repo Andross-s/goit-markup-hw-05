@@ -624,14 +624,13 @@ img {
   background: #4d5ae5; /* Фіолетовий фон кнопки */
   border-radius: 4px; /* Заокруглені кути */
   padding: 8px 24px; /* Внутрішні відступи: верх/низ 8px, ліво/право 24px */
-  width: 165px; /* Фіксована ширина кнопки */
+  min-width: 165px; /* Фіксована ширина кнопки */
   height: 40px; /* Висота кнопки */
   cursor: pointer; /* Курсор-рука при наведенні */
   border: none; /* Без рамки */
   display: flex; /* Flexbox для розташування тексту та іконки */
   align-items: center; /* Центрування по вертикалі */
   justify-content: center; /* Центрування по горизонталі */
-  gap: 16px; /* Відступ між текстом та іконкою */
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна анімація */
 }
@@ -645,9 +644,10 @@ img {
 
 /* Іконка відправки в кнопці */
 .form-btn-svg {
+  margin-left: 16px;
   fill: #fff; /* Білий колір іконки */
   width: 24px; /* Ширина іконки */
-  height: 20px; /* Висота іконки */
+  height: 24px; /* Висота іконки */
   flex-shrink: 0; /* Запобігає стисненню іконки */
 }
 
@@ -729,7 +729,6 @@ input {
 .modal-close-btn:focus {
   border: none; /* Убираємо рамку */
   background-color: #404bbf; /* Темніший синій при наведенні */
-  border: 1px solid #404bbf; /* Темніша рамка */
 }
 
 /* Іконка закриття (хрестик) */
@@ -744,12 +743,6 @@ input {
   fill: #ffffff; /* Білий колір при наведенні */
 }
 
-/* Форма модального вікна */
-.modal-form {
-  display: flex; /* Flexbox для вертикального розташування */
-  flex-direction: column; /* Вертикальне розташування елементів */
-}
-
 /* Заголовок модального вікна */
 .modal-title {
   font-weight: 500; /* Напівжирний шрифт */
@@ -761,6 +754,36 @@ input {
   margin-bottom: 16px; /* Відступ знизу */
 }
 
+/* Форма модального вікна */
+.modal-form {
+  display: flex; /* Flexbox для вертикального розташування */
+  flex-direction: column; /* Вертикальне розташування елементів */
+}
+
+.form-container {
+  margin-bottom: 8px;
+}
+
+/* Контейнер для полів вводу з іконками */
+/* Лейбли для полів вводу */
+.modal-label {
+  margin-bottom: 4px; /* Відступ знизу між лейблом і полем */
+  position: relative; /* Відносна позиція для розміщення іконок */
+
+  display: block; /* Flexbox для вертикального розташування */
+  flex-direction: column; /* Вертикальне розташування */
+  gap: 4px; /* Відступ між лейблом і полем */
+  font-weight: 400; /* Звичайна товщина шрифту */
+  font-size: 12px; /* Розмір шрифту */
+  line-height: 1.17; /* Висота рядка */
+  letter-spacing: 0.04em; /* Міжлітерний інтервал */
+  color: #8e8f99; /* Сірий колір тексту */
+}
+
+.input-icon-container {
+  position: relative; /* Відносна позиція для розміщення іконок */
+}
+
 /* Поля вводу в модальному вікні */
 .modal-input {
   width: 100%; /* Повна ширина контейнера */
@@ -768,8 +791,9 @@ input {
   border: 1px solid rgba(46, 47, 66, 0.4); /* Рамка з прозорістю */
   border-radius: 4px; /* Заокруглені кути */
   background-color: transparent; /* Прозорий фон */
-  padding: 11px 16px 11px 40px; /* Внутрішні відступи: верх, право, низ, ліво (більше зліва для іконки) */
+  padding-left: 38px; /* Внутрішні відступи: зліва для іконки) */
   font-family: inherit; /* Наслідуємо шрифт */
+  outline: transparent; /* Убираємо стандартну обводку */
   font-size: 12px; /* Розмір шрифту */
   line-height: 1.17; /* Висота рядка */
   letter-spacing: 0.04em; /* Міжлітерний інтервал */
@@ -790,9 +814,10 @@ input {
   top: 50%; /* Позиціонуємо по центру */
   pointer-events: none; /* Вимікаємо взаємодію з іконкою */
   fill: #2e2f42; /* Колір іконки */
+  transform: translateY(-50%); /* Центруємо по вертикалі */
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна зміна кольору */
   width: 18px; /* Ширина іконки */
-  height: 18px; /* Висота іконки */
+  height: 24px; /* Висота іконки */
   display: block; /* Блоковий елемент для кращої видимості */
 }
 
@@ -812,25 +837,9 @@ input {
   z-index: 1; /* Піднімаємо іконку над полем вводу */
 }
 
-/* Контейнер для полів вводу з іконками */
-/* Лейбли для полів вводу */
-.modal-label {
-  padding-bottom: 8px; /* Відступ знизу між лейблом і полем */
-  position: relative; /* Відносна позиція для розміщення іконок */
-
-  display: flex; /* Flexbox для вертикального розташування */
-  flex-direction: column; /* Вертикальне розташування */
-  gap: 4px; /* Відступ між лейблом і полем */
-  font-weight: 400; /* Звичайна товщина шрифту */
-  font-size: 12px; /* Розмір шрифту */
-  line-height: 1.17; /* Висота рядка */
-  letter-spacing: 0.04em; /* Міжлітерний інтервал */
-  color: #8e8f99; /* Сірий колір тексту */
-}
-
-.modal-label,
+/* Лейбл для текстового поля коментаря */
 .modal-label-textarea {
-  padding-bottom: 0;
+  margin-bottom: 16px; /* Відступ знизу між лейблом і текстовим полем */
 }
 
 /* Текстове поле для коментаря */
@@ -845,7 +854,8 @@ input {
   font-size: 12px; /* Розмір шрифту */
   line-height: 1.17; /* Висота рядка */
   letter-spacing: 0.04em; /* Міжлітерний інтервал */
-  color: #2e2f42; /* Колір тексту */
+  color: rgba(46, 47, 66, 0.4); /* Колір тексту */
+  outline: transparent; /* Убираємо стандартну обводку */
   resize: none; /* Заборона зміни розміру */
   transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавна зміна кольору рамки */
 }
@@ -871,6 +881,9 @@ input {
   color: #8e8f99; /* Сірий колір тексту */
   cursor: pointer; /* Курсор-рука при наведенні */
   margin-top: 16px; /* Відступ зверху */
+}
+
+.checkbox-container {
   margin-bottom: 24px; /* Відступ знизу */
 }
 
@@ -887,10 +900,15 @@ input {
   height: 16px;
   border-radius: 2px;
   border: 1px solid rgba(46, 47, 66, 0.4);
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  fill: transparent;
   margin-right: 8px;
   vertical-align: middle;
-  transition: background-color 0.3s, border-color 0.3s;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Коли чекбокс відмічений */
