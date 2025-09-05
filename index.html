@@ -654,14 +654,19 @@
               type="checkbox"
               name="user-privacy"
               value="true"
-              class="visually-hidden"
+              class="visually-hidden checkbox-input"
               required
             />
             <label class="checkbox" for="user-privacy">
+              <span class="checkbox-custom">
+                <svg class="checkbox-svg" width="10" height="8">
+                  <use href="./images/icons.svg#icon-vector_v"></use>
+                </svg>
+              </span>
+
               I accept the terms and conditions of the
               <a href="#" class="modal-policy-link">Privacy Policy</a>
             </label>
-            <span class="checkbox-custom"></span>
           </div>
           <button type="submit" class="modal-send-btn">Send</button>
         </form>

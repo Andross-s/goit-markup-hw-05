@@ -687,8 +687,6 @@ input {
 /* Модальне вікно - основний контейнер форми */
 .modal-window {
   position: absolute; /* Відносна позиція для правильного розміщення кнопки закриття */
-  top: 50%; /* Центруємо по вертикалі */
-  left: 50%; /* Центруємо по горизонталі */
   width: 408px; /* Фіксована ширина модального вікна */
   min-height: 584px; /* Мінімальна висота */
   background-color: #fcfcfc; /* Світлий фон */
@@ -912,20 +910,15 @@ input {
 }
 
 /* Коли чекбокс відмічений */
-.checkbox-input:checked + .checkbox-custom {
-  background-color: #4d5ae5; /* колір заливки */
-  border-color: #4d5ae5;
-  position: relative;
+input [type="checkbox"]:checked .checkbox-custom {
+  background-color: #404bbf; /* колір заливки */
+  fill: #f4f4fd; /* колір галочки */
+
+  border: none;
 }
 
-/* Додаємо галочку */
-.checkbox-input:checked + .checkbox-custom::after {
-  content: "✔";
-  color: #fff;
-  font-size: 14px;
-  position: absolute;
-  top: 0;
-  left: 3px;
+.chekbox-svg {
+  fill: #f4f4fd; /* колір галочки */
 }
 
 /* Посилання на політику конфіденційності */
@@ -944,6 +937,7 @@ input {
 
 /* Кнопка відправки форми */
 .modal-send-btn {
+  display: block; /* Блочний елемент */
   align-self: center; /* Центруємо кнопку */
   min-width: 169px; /* Мінімальна ширина */
   height: 56px; /* Висота кнопки */
